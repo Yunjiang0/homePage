@@ -7,5 +7,16 @@ const yiyan = (data) => {
         data
     })
 }
-
-export default { yiyan, }
+const wyy = (data) => {
+    return api.get({
+        url: '/reping',
+        data
+    })
+}
+const weather = (data) => {
+    return api.get({
+        url: '/weather',
+        data
+    })
+}
+export default { yiyan, wyy, weather }
