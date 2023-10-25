@@ -9,11 +9,11 @@
                     fill="currentColor"></path>
             </svg>
         </span>
-        <div class="text">
+        <el-text class="text" truncated>
             {{ indexData.yiyan }}
             <!-- {{ indexData.source }} -->
 
-        </div>
+        </el-text>
         <span class="xicon downxicon">
             <svg data-v-f16f0e80="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 512 512">
@@ -72,10 +72,13 @@ api.yiyan().then(res => {
 }
 
 .text {
+    display: block;
     color: #fff;
     text-align: center;
     user-select: none;
     text-decoration: none;
     box-sizing: border-box;
+    font-size: 1.2rem;
+    margin-top: 30px;
 }
 </style>

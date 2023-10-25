@@ -114,7 +114,9 @@ api.weather().then(res => {
     word-break: break-all;
 }
 
-.date .weather {
+
+.date,
+.weather {
     text-overflow: ellipsis;
     overflow-x: hidden;
     white-space: nowrap;

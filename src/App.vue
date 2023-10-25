@@ -40,6 +40,12 @@
           <el-col :span="12" class="left" :offset="0">
             <el-row :gutter="0">
               <el-col :span="20" :offset="2">
+                <helloWorld></helloWorld>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="0">
+              <el-col :span="20" :offset="2">
                 <yiyan></yiyan>
               </el-col>
             </el-row>
@@ -53,6 +59,17 @@
                 <date></date>
               </el-col>
             </el-row>
+            <el-row :gutter="0" style="margin-top: 40px;">
+              <el-col :span="6" :offset="1">
+                <linkText></linkText>
+              </el-col>
+            </el-row>
+            <el-row :gutter="0">
+              <el-col :span="24" :offset="0">
+                <link>
+              </el-col>
+            </el-row>
+            <linkContent></linkContent>
           </el-col>
         </el-row>
         <el-row style="height: 15vh;"></el-row>
@@ -64,6 +81,9 @@
 import yiyan from './components/yiyan.vue';
 import wyy from './components/wyy.vue';
 import date from './components/date.vue';
+import helloWorld from './components/helloWorld.vue'
+import linkContent from './components/link.vue';
+import linkText from './components/linkText.vue';
 // document.documentElement 是全局变量时
 const el = document.documentElement
 // const el = document.getElementById('xxx')
