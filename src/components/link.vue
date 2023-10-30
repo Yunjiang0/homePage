@@ -23,7 +23,7 @@
                 </span>
                 <span class="iconText">demo 管理</span>
             </el-col>
-            <el-col class="item" :span="7" :offset="1">3</el-col>
+            <el-col class="item" :span="7" :offset="1"></el-col>
         </el-row>
     </div>
 </template>
@@ -35,6 +35,8 @@ function toRescue(url) {
 <style scoped>
 .first {
     margin-top: 20px;
+    user-select: none;
+
 }
 
 .item {
