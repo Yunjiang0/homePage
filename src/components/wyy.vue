@@ -5,16 +5,15 @@
             {{ indexData.content }}
         </div>
         <div class="name">
-            <span>{{ indexData.name }}</span>
+            <span>{{ indexData.auther }}</span>
             <span> -</span>
-            <span>「 {{ indexData.auther }} 」</span>
+            <span>「 {{ indexData.name }} 」</span>
         </div>
     </div>
 </template>
 <script setup>
 import { reactive } from 'vue'
 import api from '../api/api.js'
-import { ElMessage } from 'element-plus';
 let indexData = reactive({
     name: '',
     auther: '',
