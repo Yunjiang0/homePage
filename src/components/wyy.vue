@@ -12,7 +12,7 @@
     </div>
 </template>
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref, onMounted, onUnmounted } from 'vue'
 import api from '../api/api.js'
 let indexData = reactive({
     name: '',
@@ -36,6 +36,17 @@ function wright() {
     navigator.clipboard.writeText(indexData.mp3url)
     ElMessage.info('音乐链接复制成功（部分可用）')
 }
+const screenWidth = ref(window.innerWidth)
+const handleResize = () => {
+    screenWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+    window.addEventListener('resize', handleResize)
+})
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+})
 </script>
 <style scoped>
 .wyy {
@@ -75,6 +86,12 @@ function wright() {
     font-size: 1.1rem;
     margin-top: 10px;
     font-weight: 700;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    word-break: break-all;
 }
 
 .title {

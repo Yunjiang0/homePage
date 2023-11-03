@@ -1,7 +1,7 @@
 <template>
     <div class="all">
         <el-row class="first" :gutter="20">
-            <el-col @click="toRescue('https://yunjiangboke.fun/')" class="item firstItem" :span="7" :offset="0">
+            <el-col @click="toRescue('http://43.143.225.216:5734/')" class="item firstItem" :span="7" :offset="0">
                 <span class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 512 512">
@@ -12,7 +12,7 @@
                 </span>
                 <span class="iconText">博 客</span>
             </el-col>
-            <el-col @click="toRescue('https://demo.yunjiangboke.fun')" class="item" :span="7" :offset="1">
+            <el-col @click="toRescue('http://43.143.225.216:5733')" class="item" :span="7" :offset="1">
                 <span class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 512 512">
@@ -21,9 +21,9 @@
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span class="iconText">demo 管理</span>
+                <span class="iconText">demo <i v-if="screenWidth >= 1244">管理</i></span>
             </el-col>
-            <el-col @click="toRescue('https://pic.yunjiangboke.fun/')" class="item" :span="7" :offset="1">
+            <el-col @click="toRescue('http://43.143.225.216:5735/')" class="item" :span="7" :offset="1">
                 <span class="icon">
                     <svg t="1698668894754" class="icon" viewBox="0 0 1070 1024" version="1.1"
                         xmlns="http://www.w3.org/2000/svg" p-id="7247" width="200" height="200">
@@ -32,17 +32,35 @@
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span class="iconText">&thinsp;图片管理</span>
+                <span class="iconText">&thinsp;图<i v-if="screenWidth < 1123">&thinsp;</i>片<i
+                        v-if="screenWidth >= 1123">管理</i></span>
             </el-col>
         </el-row>
     </div>
 </template>
 <script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 function toRescue(url) {
     window.location.href = url;
 }
+const screenWidth = ref(window.innerWidth)
+const handleResize = () => {
+    screenWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+    window.addEventListener('resize', handleResize)
+})
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+})
 </script>
 <style scoped>
+.all {
+    height: 100%;
+    width: 100%;
+}
+
 .first {
     margin-top: 20px;
     user-select: none;

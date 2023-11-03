@@ -39,7 +39,7 @@
         <el-row :gutter="70">
           <el-col :span="12" class="left" :offset="0">
             <el-row :gutter="0">
-              <el-col :span="20" :offset="2">
+              <el-col :xl="20" :lg="22" :md="24" :xm="24" :xs="24" :offset="3">
                 <helloWorld></helloWorld>
               </el-col>
             </el-row>
@@ -52,24 +52,27 @@
           </el-col>
           <el-col :span="12" class="right" :offset="0">
             <el-row :gutter="20">
-              <el-col :span="12" :offset="0">
+              <el-col v-if="screenWidth >= 1000" :span="12" :offset="0">
                 <wyy></wyy>
               </el-col>
-              <el-col :span="12" :offset="0">
+              <el-col v-if="screenWidth >= 1000" :span="12" :offset="0">
                 <date></date>
               </el-col>
+              <el-col v-if="screenWidth < 1000" :span="24" :offset="0">
+                <date></date>
+              </el-col>
+
             </el-row>
             <el-row :gutter="0" style="margin-top: 40px;">
-              <el-col :span="6" :offset="1">
+              <el-col :span="20" :offset="1">
                 <linkText></linkText>
               </el-col>
             </el-row>
             <el-row :gutter="0">
               <el-col :span="24" :offset="0">
-                <link>
+                <linkContent></linkContent>
               </el-col>
             </el-row>
-            <linkContent></linkContent>
           </el-col>
         </el-row>
         <el-row style="height: 15vh;"></el-row>
@@ -78,6 +81,7 @@
   </div>
 </template>
 <script setup>
+import { reactive, ref, onMounted, onUnmounted } from 'vue'
 import yiyan from './components/yiyan.vue';
 import wyy from './components/wyy.vue';
 import date from './components/date.vue';
@@ -93,6 +97,19 @@ getComputedStyle(el).getPropertyValue(`--el-message-bg-color`)
 
 // 设置 css 变量
 el.style.setProperty('--el-message-bg-color', '#00000040')
+
+// 获取宽度
+const screenWidth = ref(window.innerWidth)
+const handleResize = () => {
+  screenWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+})
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+})
 </script>
 <style scoped>
 .flex-wrap {
@@ -111,7 +128,7 @@ el.style.setProperty('--el-message-bg-color', '#00000040')
 }
 
 #Filter {
-  background: radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  background: radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -122,5 +139,11 @@ el.style.setProperty('--el-message-bg-color', '#00000040')
 .all {
   width: 100%;
   height: 100%;
+}
+
+@media screen and (max-width: 1244px) {
+  .left {
+    padding: 0px !important;
+  }
 }
 </style>

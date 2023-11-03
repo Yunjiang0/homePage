@@ -32,5 +32,6 @@
     color: #fff;
     font-weight: 700;
     font-size: 1.3rem;
+    width: 100%;
 }
 </style>

@@ -25,6 +25,8 @@
     width: 120px;
 }
 
+
+
 .text {
     width: 100%;
     height: 142px;
@@ -35,5 +37,16 @@
 
 .text span {
     font-size: 5rem;
+}
+
+@media screen and (max-width: 1244px) {
+    .text span {
+        font-size: 4rem;
+        line-height: 142px;
+    }
+
+    .img {
+        width: 100px;
+    }
 }
 </style>

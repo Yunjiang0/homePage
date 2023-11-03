@@ -2,10 +2,10 @@
     <div class="box">
         <div class="time">
             <div class="date">
-                <span style="margin-left: 1rem;">
+                <span>
                     {{ indexData.date }}
                 </span>
-                <span style="margin-left: 1rem;">
+                <span>
                     {{ indexData.week }}
                 </span>
             </div>
@@ -18,14 +18,10 @@
             </div>
             <div class="weather">
                 <span>{{ indexData.city }}</span>
-                <span style="margin-left: 5px;margin-right: 5px;"></span>
                 <span>{{ indexData.type }}</span>
-                <span style="margin-left: 5px;margin-right: 5px;"></span>
                 <span>{{ indexData.high }}</span>
-                <span style="margin-left: 5px;margin-right: 5px;"></span>
-                <span>{{ indexData.fengxiang }}</span>
-                <span style="margin-left: 5px;margin-right: 5px;"></span>
-                <span>{{ indexData.fengli }}</span>
+                <span v-if="screenWidth >= 1244 || screenWidth < 1000">{{ indexData.fengxiang }}</span>
+                <span v-if="screenWidth >= 1244 || screenWidth < 1000">{{ indexData.fengli }}</span>
             </div>
         </div>
 
@@ -33,7 +29,8 @@
 </template>
 <script setup>
 import api from '../api/api.js'
-import { reactive } from 'vue'
+import { reactive, ref, onMounted, onUnmounted } from 'vue'
+
 function fnGetDate() {
     // 获取当前小时
     time.nHours = new Date().getHours();
@@ -82,6 +79,18 @@ api.weather().then(res => {
     console.log(err);
     ElMessage.error('天气获取失败')
 })
+
+const screenWidth = ref(window.innerWidth)
+const handleResize = () => {
+    screenWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+    window.addEventListener('resize', handleResize)
+})
+onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+})
 </script>
 <style scoped>
 .box {
@@ -99,7 +108,9 @@ api.weather().then(res => {
 }
 
 .time {
-    font-size: 1rem;
+    width: 100%;
+    height: 100%;
+    font-size: 1.05rem;
     text-align: center;
     color: #fff;
     text-align: left;
@@ -112,7 +123,13 @@ api.weather().then(res => {
     overflow: hidden;
     display: -webkit-box;
     word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+
+
 
 
 .date,
@@ -120,6 +137,20 @@ api.weather().then(res => {
     text-overflow: ellipsis;
     overflow-x: hidden;
     white-space: nowrap;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.date {
+    justify-content: center;
+
+}
+
+
+.date :last-child {
+    margin-left: 10px;
 }
 
 .timeText {
@@ -130,5 +161,43 @@ api.weather().then(res => {
     font-family: UnidreamLED;
     width: 100%;
     text-align: center;
+}
+
+@media screen and (max-width: 1244px) {
+    .timeText {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 2.8rem;
+        letter-spacing: 1px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .timeText {
+        font-size: 2.4rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .timeText {
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+    }
+
+    .weather {
+        font-size: 1.1rem;
+        justify-content: center;
+    }
+
+    .weather span {
+        margin: 0 5px;
+    }
+
+
+    .date {
+        font-size: 1.1rem;
+    }
 }
 </style>
