@@ -3,7 +3,7 @@
         <img class="img" src="../../public/img/logo.png" alt="">
         <div class="text">
             <span>hello</span>
-            <span style="margin-left: 2rem;">world</span>
+            <span>world</span>
         </div>
     </div>
 </template>
@@ -30,23 +30,36 @@
 .text {
     width: 100%;
     height: 142px;
-    margin-left: 2rem;
     font-family: Pacifico;
     color: #fff;
 }
 
 .text span {
     font-size: 5rem;
+    margin-left: 2rem;
 }
 
 @media screen and (max-width: 1244px) {
     .text span {
         font-size: 4rem;
         line-height: 142px;
+        margin-left: 1rem;
     }
 
     .img {
         width: 100px;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .text span {
+        font-size: 3.5rem;
+        line-height: 142px;
+        margin-left: 0.6rem;
+    }
+
+    .img {
+        width: 70px;
     }
 }
 </style>

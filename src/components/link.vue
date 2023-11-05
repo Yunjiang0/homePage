@@ -1,7 +1,7 @@
 <template>
     <div class="all">
         <el-row class="first" :gutter="20">
-            <el-col @click="toRescue('http://43.143.225.216:5734/')" class="item firstItem" :span="7" :offset="0">
+            <el-col @click="toRescue('http://43.143.225.216:5734/')" class="item" :span="7" :offset="0">
                 <span class="icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 512 512">
@@ -10,7 +10,7 @@
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span class="iconText">博 客</span>
+                <span v-show="screenWidth > 870" class="iconText">博 客</span>
             </el-col>
             <el-col @click="toRescue('http://43.143.225.216:5733')" class="item" :span="7" :offset="1">
                 <span class="icon">
@@ -21,19 +21,18 @@
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span class="iconText">demo <i v-if="screenWidth >= 1244">管理</i></span>
+                <span v-show="screenWidth > 870" class="iconText">demo <i v-show="screenWidth >= 1244">管理</i></span>
             </el-col>
             <el-col @click="toRescue('http://43.143.225.216:5735/')" class="item" :span="7" :offset="1">
                 <span class="icon">
-                    <svg t="1698668894754" class="icon" viewBox="0 0 1070 1024" version="1.1"
-                        xmlns="http://www.w3.org/2000/svg" p-id="7247" width="200" height="200">
+                    <svg class="icon" viewBox="0 0 1070 1024" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M981.783273 0H85.224727C38.353455 0 0 35.374545 0 83.083636v844.893091c0 47.616 38.353455 86.574545 85.178182 86.574546h903.633454c46.917818 0 81.733818-38.958545 81.733819-86.574546V83.083636C1070.592 35.374545 1028.701091 0 981.783273 0zM335.825455 135.912727c74.193455 0 134.330182 60.974545 134.330181 136.285091 0 75.170909-60.136727 136.192-134.330181 136.192-74.286545 0-134.516364-61.021091-134.516364-136.192 0-75.264 60.229818-136.285091 134.516364-136.285091z m-161.512728 745.937455a41.890909 41.890909 0 0 1-27.648-10.379637 43.752727 43.752727 0 0 1-4.654545-61.067636l198.097454-255.162182a42.123636 42.123636 0 0 1 57.716364-6.702545l116.549818 128.139636 286.906182-352.814545c14.615273-18.711273 90.251636-106.775273 135.866182-6.935273 0.093091-0.093091 0.093091 112.965818 0.232727 247.761455 0.093091 140.8 0.093091 317.067636 0.093091 317.067636-1.024-0.093091-762.740364 0.093091-763.112727 0.093091z"
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span class="iconText">&thinsp;图<i v-if="screenWidth < 1123">&thinsp;</i>片<i
-                        v-if="screenWidth >= 1123">管理</i></span>
+                <span v-show="screenWidth > 870" class="iconText">&thinsp;图<i v-if="screenWidth < 1123">&thinsp;</i>片<i
+                        v-show="screenWidth >= 1123">管理</i></span>
             </el-col>
         </el-row>
     </div>
@@ -57,14 +56,15 @@ onUnmounted(() => {
 </script>
 <style scoped>
 .all {
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
 }
 
 .first {
     margin-top: 20px;
+    box-sizing: border-box;
     user-select: none;
-
 }
 
 .item {
@@ -80,6 +80,8 @@ onUnmounted(() => {
     /* transform: scale(1); */
     color: #fff;
     transition: all 0.5s;
+    padding: 0 !important;
+    box-sizing: border-box;
 }
 
 .icon {
@@ -94,12 +96,11 @@ onUnmounted(() => {
     /* letter-spacing: 5px; */
 }
 
-.firstItem {
-    margin-left: 15px;
-}
 
 .item:hover {
     background-color: #00000070;
 
 }
+
+@media screen and (max-width: 815px) {}
 </style>

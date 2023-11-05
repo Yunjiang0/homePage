@@ -32,5 +32,12 @@ export default defineConfig({
     host: '127.0.0.1',
     port: '5173',
     https: false,
-  },
+    // proxy: {
+    //   '/api': {
+    //     target: 'https://api.vvhan.com',
+    //     changeOrigin: true,
+    //     // rewrite: (path) => path.replace(/^\/api/, ''),
+    //   }
+    // },
+  }
 })

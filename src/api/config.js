@@ -4,6 +4,7 @@ import axios from "axios";
 
 const service = axios.create({
     baseURL: "https://api.vvhan.com/api",
+    // baseURL: "/api",
     // 定义统一的请求头
     headers: {
         "Content-Type": "application/json;charset=UTF-8",

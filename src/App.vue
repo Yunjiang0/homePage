@@ -33,10 +33,10 @@
 <template>
   <div id="home">
     <div id="Filter">
-      <div class="all">
+      <div class="all" v-if="screenWidth > 720">
         <el-row style="height: 15vh;"></el-row>
 
-        <el-row :gutter="70">
+        <el-row :gutter="50">
           <el-col :span="12" class="left" :offset="0">
             <el-row :gutter="0">
               <el-col :xl="20" :lg="22" :md="24" :xm="24" :xs="24" :offset="3">
@@ -52,13 +52,13 @@
           </el-col>
           <el-col :span="12" class="right" :offset="0">
             <el-row :gutter="20">
-              <el-col v-if="screenWidth >= 1000" :span="12" :offset="0">
+              <el-col v-show="screenWidth >= 1000" :span="12" :offset="0">
                 <wyy></wyy>
               </el-col>
-              <el-col v-if="screenWidth >= 1000" :span="12" :offset="0">
+              <el-col v-show="screenWidth >= 1000" :span="12" :offset="0">
                 <date></date>
               </el-col>
-              <el-col v-if="screenWidth < 1000" :span="24" :offset="0">
+              <el-col v-show="screenWidth < 1000" :span="24" :offset="0">
                 <date></date>
               </el-col>
 
@@ -69,7 +69,7 @@
               </el-col>
             </el-row>
             <el-row :gutter="0">
-              <el-col :span="24" :offset="0">
+              <el-col :span="23" :offset="1">
                 <linkContent></linkContent>
               </el-col>
             </el-row>
@@ -77,6 +77,7 @@
         </el-row>
         <el-row style="height: 15vh;"></el-row>
       </div>
+      <div class="ydAll" v-if="screenWidth <= 720"></div>
     </div>
   </div>
 </template>
@@ -144,6 +145,14 @@ onUnmounted(() => {
 @media screen and (max-width: 1244px) {
   .left {
     padding: 0px !important;
+  }
+
+
+}
+
+@media screen and (max-width: 930px) {
+  #Filter {
+    padding: 4rem 2rem;
   }
 }
 </style>
