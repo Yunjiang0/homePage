@@ -33,7 +33,7 @@
 <template>
   <div id="home">
     <div id="Filter">
-      <div class="all" v-if="screenWidth > 720">
+      <div class="all" v-show="screenWidth > 720">
         <el-row style="height: 15vh;"></el-row>
 
         <el-row :gutter="50">
@@ -77,7 +77,17 @@
         </el-row>
         <el-row style="height: 15vh;"></el-row>
       </div>
-      <div class="ydAll" v-if="screenWidth <= 720"></div>
+      <div class="ydAll" v-show="screenWidth <= 720">
+        <el-row style="height: 15vh;"></el-row>
+        <el-row class="helloworld">
+          <helloWorld></helloWorld>
+        </el-row>
+        <el-row>
+          <yiyan></yiyan>
+        </el-row>
+
+        <el-row style="height: 15vh;"></el-row>
+      </div>
     </div>
   </div>
 </template>
@@ -153,6 +163,16 @@ onUnmounted(() => {
 @media screen and (max-width: 930px) {
   #Filter {
     padding: 4rem 2rem;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  #Filter {
+    padding: 4rem 2rem;
+  }
+
+  .helloworld {
+    justify-content: center;
   }
 }
 </style>

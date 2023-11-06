@@ -62,4 +62,43 @@
         width: 70px;
     }
 }
+
+@media screen and (max-width: 720px) {
+    .text span {
+        font-size: 4rem;
+        margin-left: 1.5rem;
+    }
+
+    .img {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .text span {
+        font-size: 3.5rem;
+        line-height: 142px;
+        margin-left: 0.6rem;
+    }
+
+    .img {
+        width: 70px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .text span {
+        font-size: 3.5rem;
+        line-height: 142px;
+        margin-left: 0;
+    }
+
+    .text span:last-child {
+        margin-left: 1rem;
+    }
+
+    .img {
+        display: none;
+    }
+}
 </style>
