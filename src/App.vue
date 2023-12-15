@@ -85,6 +85,11 @@
         <el-row>
           <yiyan></yiyan>
         </el-row>
+        <el-row>
+          <el-col :span="4" :offset="10">
+            <menuBtn></menuBtn>
+          </el-col>
+        </el-row>
 
         <el-row style="height: 15vh;"></el-row>
       </div>
@@ -99,6 +104,7 @@ import date from './components/date.vue';
 import helloWorld from './components/helloWorld.vue'
 import linkContent from './components/link.vue';
 import linkText from './components/linkText.vue';
+import menuBtn from './components/menu.vue';
 // document.documentElement 是全局变量时
 const el = document.documentElement
 // const el = document.getElementById('xxx')
@@ -168,7 +174,7 @@ onUnmounted(() => {
 
 @media screen and (max-width: 390px) {
   #Filter {
-    padding: 4rem 2rem;
+    padding: 4rem 1.5rem;
   }
 
   .helloworld {

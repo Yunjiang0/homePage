@@ -101,4 +101,12 @@
         display: none;
     }
 }
+
+@media screen and (max-width: 290px) {
+    .text span {
+        font-size: 2.5rem;
+        line-height: 142px;
+        margin-left: 0;
+    }
+}
 </style>
