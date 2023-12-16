@@ -10,7 +10,7 @@
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span v-show="screenWidth > 870" class="iconText">博 客</span>
+                <span v-show="screenWidth > 870 || screenWidth<720 & screenWidth>450" class="iconText">博 客</span>
             </el-col>
             <el-col @click="toRescue('http://43.143.225.216:5733')" class="item" :span="7" :offset="1">
                 <span class="icon">
@@ -21,7 +21,7 @@
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span v-show="screenWidth > 870" class="iconText">demo <i v-show="screenWidth >= 1244">管理</i></span>
+                <span v-show="screenWidth > 870 || screenWidth<720 & screenWidth>450" class="iconText">demo <i v-show="screenWidth >= 1244">管理</i></span>
             </el-col>
             <el-col @click="toRescue('http://43.143.225.216:5735/')" class="item" :span="7" :offset="1">
                 <span class="icon">
@@ -31,7 +31,7 @@
                             fill="currentColor"></path>
                     </svg>
                 </span>
-                <span v-show="screenWidth > 870" class="iconText">&thinsp;图<i v-if="screenWidth < 1123">&thinsp;</i>片<i
+                <span v-show="screenWidth > 870|| screenWidth<720 & screenWidth>450" class="iconText">&thinsp;图<i v-if="screenWidth < 1123">&thinsp;</i>片<i
                         v-show="screenWidth >= 1123">管理</i></span>
             </el-col>
         </el-row>

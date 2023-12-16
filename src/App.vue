@@ -33,7 +33,7 @@
 <template>
   <div id="home">
     <div id="Filter">
-      <div class="all" v-show="screenWidth > 720">
+      <div class="all" v-if="screenWidth > 720">
         <el-row style="height: 15vh;"></el-row>
 
         <el-row :gutter="50">
@@ -52,13 +52,13 @@
           </el-col>
           <el-col :span="12" class="right" :offset="0">
             <el-row :gutter="20">
-              <el-col v-show="screenWidth >= 1000" :span="12" :offset="0">
+              <el-col v-if="screenWidth >= 1000" :span="12" :offset="0">
                 <wyy></wyy>
               </el-col>
-              <el-col v-show="screenWidth >= 1000" :span="12" :offset="0">
+              <el-col v-if="screenWidth >= 1000" :span="12" :offset="0">
                 <date></date>
               </el-col>
-              <el-col v-show="screenWidth < 1000" :span="24" :offset="0">
+              <el-col v-if="screenWidth < 1000" :span="24" :offset="0">
                 <date></date>
               </el-col>
 
@@ -77,19 +77,34 @@
         </el-row>
         <el-row style="height: 15vh;"></el-row>
       </div>
-      <div class="ydAll" v-show="screenWidth <= 720">
-        <el-row style="height: 15vh;"></el-row>
-        <el-row class="helloworld">
+      <div class="ydAll" v-if="screenWidth <= 720">
+        <el-row style="height: 10vh;"></el-row>
+      <transition name="fade" mode="out-in">
+        <el-row v-show="listStatus == false" class="helloworld">
           <helloWorld></helloWorld>
         </el-row>
-        <el-row>
+      </transition>
+      <transition name="fade"mode="out-in">
+        <el-row v-show="listStatus == false">
           <yiyan></yiyan>
         </el-row>
-        <el-row>
-          <el-col :span="4" :offset="10">
-            <menuBtn></menuBtn>
-          </el-col>
+      </transition>
+      <transition name="fade"mode="out-in">
+        <el-row v-show="listStatus == true">
+          <date></date>
         </el-row>
+      </transition>
+      <transition name="fade"mode="out-in">
+        <el-row style="margin-top: 20px;" v-show="listStatus == true">
+          <linkText></linkText>
+        </el-row>
+      </transition>
+      <transition name="fade"mode="out-in">
+        <el-row v-show="listStatus == true">
+          <linkContent></linkContent>
+        </el-row>
+      </transition>
+        <menuBtn class="menuBtn" @listChange='getListStatus'></menuBtn>
 
         <el-row style="height: 15vh;"></el-row>
       </div>
@@ -105,6 +120,15 @@ import helloWorld from './components/helloWorld.vue'
 import linkContent from './components/link.vue';
 import linkText from './components/linkText.vue';
 import menuBtn from './components/menu.vue';
+
+// 移动端按钮状态
+let listStatus = ref(false)
+const getListStatus = () => {
+  console.log(1111);
+  console.log(listStatus.value);
+  listStatus.value = !listStatus.value
+  console.log(listStatus.value);
+}
 // document.documentElement 是全局变量时
 const el = document.documentElement
 // const el = document.getElementById('xxx')
@@ -157,7 +181,13 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
 }
-
+.menuBtn{
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, 0);
+  z-index: 999;
+}
 @media screen and (max-width: 1244px) {
   .left {
     padding: 0px !important;
@@ -181,4 +211,10 @@ onUnmounted(() => {
     justify-content: center;
   }
 }
+.fade-enter-active, .fade-leave-active {
+	transition: all 1s
+ }
+ .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+	opacity: 0
+} 
 </style>
